@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Home</title>
+</head>
+<style>
+#table {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#table td, #table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#table tr:nth-child(even){background-color: #f2f2f2;}
+
+#table tr:hover {background-color: #ddd;}
+
+#table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
+<body>
+	
+	<div style="text-align:center;">
+	{% if user.is_authenticated %}
+		<h3><a href="logout">Logout</a></h3>
+		<h2>Hi: {{ user.username }}</h2>
+
+
+		<table id="table">
+		<tr>
+			<th>UserID</th>
+			<th>Model</th>
+			<th>StartDate</th>
+			<th>EndDate</th>
+			<th>Place</th>
+		</tr>
+		{% for booking in BookingList %}
+		<tr>
+			<td>{{booking.UserID}}</td>                     
+			<td>{{booking.Model}}</td> 
+			<td>{{booking.StartDate}}</td> 
+			<td>{{booking.EndDate}}</td> 
+			<td>{{booking.Place}}</td> 
+		</tr>
+		{% endfor %}
+
+		</table>
+
+		<br>
+		<br>
+
+		<p>CLICK ON THE ID TO SEE DETAILS</p>
+		<table id="table">
+		<tr>
+			<th>VehicleID</th>
+			<th>Code</th>
+			<th>Model</th>
+		</tr>
+		{% for vehicle in VehiclesList %}
+		<tr>
+			<td><a href="{{vehicle.VehicleID}}">{{vehicle.VehicleID}}</a></td>                     
+			<td>{{vehicle.Code}}</td> 
+			<td>{{vehicle.Model}}</td> 
+		</tr>
+		{% endfor %}
+		</table>		
+
+
+	{% else %}
+		<h2>If you are not regitered <a href="register">Click here to create an account</a></h2>
+		<h2>If you already have your account <a href="accounts/login">Click here to log in</a></h2>
+	{% endif %}
+
+
+
+	</div>
+
+</body>
+</html>

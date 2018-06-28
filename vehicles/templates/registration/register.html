@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>LOGIN</title>
+</head>
+<body>
+	{% csrf_token %}
+	
+	<h1>Registration Page</h1>
+	<form method="post" action="{% url 'register' %}">
+
+	{% if form.errors %}
+		<p>Error with the form!</p>
+	{% endif %}
+
+	{{ form }}
+
+	<input type="submit" value="Register">
+
+	</form>
+</body>
+</html>
